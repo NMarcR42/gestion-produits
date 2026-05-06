@@ -1,13 +1,14 @@
--- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
+Enter password: 
+-- MySQL dump 10.13  Distrib 8.4.9, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: gestion_produits
+-- Host: localhost    Database: gestion_produits
 -- ------------------------------------------------------
--- Server version	5.5.62
+-- Server version	8.4.9
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -19,7 +20,7 @@
 -- Current Database: `gestion_produits`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gestion_produits` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gestion_produits` /*!40100 DEFAULT CHARACTER SET latin1 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `gestion_produits`;
 
@@ -29,14 +30,14 @@ USE `gestion_produits`;
 
 DROP TABLE IF EXISTS `produits`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `produits` (
-  `PRO_id` int(11) NOT NULL AUTO_INCREMENT,
+  `PRO_id` int NOT NULL AUTO_INCREMENT,
   `PRO_lib` varchar(200) NOT NULL,
   `PRO_prix` decimal(10,2) NOT NULL,
   `PRO_description` text,
   PRIMARY KEY (`PRO_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,17 +56,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `ressources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ressources` (
-  `RE_id` int(11) NOT NULL AUTO_INCREMENT,
+  `RE_id` int NOT NULL AUTO_INCREMENT,
   `RE_type` varchar(100) NOT NULL,
   `RE_url` varchar(1000) NOT NULL,
   `RE_nom` varchar(100) DEFAULT NULL,
-  `PRO_id` int(11) NOT NULL,
+  `PRO_id` int NOT NULL,
   PRIMARY KEY (`RE_id`),
   KEY `ressources_produits_FK` (`PRO_id`),
   CONSTRAINT `ressources_produits_FK` FOREIGN KEY (`PRO_id`) REFERENCES `produits` (`PRO_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +75,7 @@ CREATE TABLE `ressources` (
 
 LOCK TABLES `ressources` WRITE;
 /*!40000 ALTER TABLE `ressources` DISABLE KEYS */;
-INSERT INTO `ressources` VALUES (40,'img','uploads/3-ad201839b2ed3d2e4dae6c4f60c4b351.jpg',NULL,3),(41,'img','uploads/3-7e147d9390a77334782851729ed8384f.jpg',NULL,3),(42,'img','uploads/3-82fde3218e6f64fa94e8139fe80f7917.jpg',NULL,3),(43,'img','uploads/5-19b235d023eef2281304433f0d4438b6.jpg',NULL,5),(44,'img','uploads/5-b02cbdbc96d5c9a20526763576f56a11.jpg',NULL,5),(45,'img','uploads/5-8e258524bf0f2aae28647a1aa8a77a8c.jpg',NULL,5),(46,'img','uploads/4-a21d716bdfda2004d50171559c4b1b92.jpg',NULL,4),(47,'img','uploads/4-1cb57a6c1de5c2573679654054a2b3b0.jpg',NULL,4),(48,'img','uploads/4-438b7f4eec56d20aca694793882909ac.jpg',NULL,4),(49,'img','uploads/1-707116622e5d4fe50dfc6391af4a5421.jpg',NULL,1),(50,'img','uploads/1-7f8aacccd9c522281c58e5eb90cbb6a8.jpg',NULL,1),(51,'img','uploads/1-987e17d65fb62e5fece343304d7be827.jpg',NULL,1),(52,'img','uploads/2-e2b9f326909fe34dc9f73e515d0e5633.jpg',NULL,2),(53,'img','uploads/2-5dfd065b9d05455732d122cdc3b64e27.jpg',NULL,2),(54,'img','uploads/2-7e38160b643cf0e21ff445c9594e77d7.jpg',NULL,2),(55,'img','uploads/2-2228cc7d3b9f647bfa31dd4ebf0f3885.jpg',NULL,2);
+INSERT INTO `ressources` VALUES (43,'img','uploads/5-19b235d023eef2281304433f0d4438b6.jpg',NULL,5),(44,'img','uploads/5-b02cbdbc96d5c9a20526763576f56a11.jpg',NULL,5),(45,'img','uploads/5-8e258524bf0f2aae28647a1aa8a77a8c.jpg',NULL,5),(46,'img','uploads/4-a21d716bdfda2004d50171559c4b1b92.jpg',NULL,4),(47,'img','uploads/4-1cb57a6c1de5c2573679654054a2b3b0.jpg',NULL,4),(48,'img','uploads/4-438b7f4eec56d20aca694793882909ac.jpg',NULL,4),(49,'img','uploads/1-707116622e5d4fe50dfc6391af4a5421.jpg',NULL,1),(50,'img','uploads/1-7f8aacccd9c522281c58e5eb90cbb6a8.jpg',NULL,1),(51,'img','uploads/1-987e17d65fb62e5fece343304d7be827.jpg',NULL,1),(53,'img','uploads/2-5dfd065b9d05455732d122cdc3b64e27.jpg',NULL,2),(54,'img','uploads/2-7e38160b643cf0e21ff445c9594e77d7.jpg',NULL,2),(55,'img','uploads/2-2228cc7d3b9f647bfa31dd4ebf0f3885.jpg',NULL,2),(60,'img','uploads/3-c518a7a917d0c35dd1d46331b62f6df8.jpg',NULL,3),(61,'img','uploads/3-f6f0e00161c27468b39bda23969b19a5.jpg',NULL,3),(62,'img','uploads/3-2b2b730177e21ac71bcb8cda0359c34a.jpg',NULL,3);
 /*!40000 ALTER TABLE `ressources` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,14 +85,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `utilisateurs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utilisateurs` (
-  `US_id` int(11) NOT NULL AUTO_INCREMENT,
+  `US_id` int NOT NULL AUTO_INCREMENT,
   `US_login` varchar(100) NOT NULL,
   `US_password` varchar(100) NOT NULL,
   PRIMARY KEY (`US_id`),
   UNIQUE KEY `US_login` (`US_login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-19 22:14:44
+-- Dump completed on 2026-05-06 20:57:29

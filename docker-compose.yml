@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  webapp:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    container_name: gestion_produits_app
+    ports:
+      - "8080:80"
+    environment:
+      - DB_TYPE=mysql
+      - DB_HOST=db
+      - DB_NAME=gestion_produits
+      - DB_USER=root
+      - DB_PASS=root
+    volumes:
+      - ./php/www/uploads:/var/www/html/uploads
+      - ./php/www/img:/var/www/html/img
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: gestion_produits_db
+    environment:
+      - MYSQL_DATABASE=gestion_produits
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/gestion_produits.sql:/docker-entrypoint-initdb.d/gestion_produits.sql
+      - mysql_prod_data:/var/lib/mysql
+
+volumes:
+  mysql_prod_data:
